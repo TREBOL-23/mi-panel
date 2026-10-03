@@ -59,8 +59,9 @@ export default async function handler(req, res) {
 
         const resultado = await respuesta.json();
 
-        return res.status(respuesta.status).json(resultado);
+console.log("Respuesta de N1:", resultado);
 
+return res.status(respuesta.status).json(resultado);
     } catch (error) {
         console.error(error);
 
