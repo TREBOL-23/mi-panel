@@ -45,8 +45,74 @@
         </div>
 
         <!-- PANEL DEL USUARIO -->
-        <div id="panelUsuario" style="display: none;">
+        <div id="recargaBox" style="display: none;">
 
+    <h3>💰 Agregar saldo</h3>
+
+    <p>Selecciona el monto que deseas recargar:</p>
+
+    <button onclick="mostrarTransferencia(5)">
+        Recargar $5
+    </button>
+
+    <button onclick="mostrarTransferencia(10)">
+        Recargar $10
+    </button>
+
+    <button onclick="mostrarTransferencia(20)">
+        Recargar $20
+    </button>
+
+    <button onclick="mostrarTransferencia(50)">
+        Recargar $50
+    </button>
+
+    <div id="transferenciaBox" style="display: none;">
+
+        <hr>
+
+        <h3>🏦 Transferencia bancaria</h3>
+
+        <p>
+            Realiza tu transferencia con los siguientes datos:
+        </p>
+
+        <p>
+            <strong>Beneficiario:</strong><br>
+            Raul Gusman
+        </p>
+
+        <p>
+            <strong>Banco:</strong><br>
+            Spin OXXO
+        </p>
+
+        <p>
+            <strong>CLABE:</strong><br>
+            728969000180654650
+        </p>
+
+        <p>
+            <strong>Concepto:</strong><br>
+            Recarga de saldo
+        </p>
+
+        <p>
+            <strong>Monto seleccionado:</strong>
+            $<span id="montoTransferencia">0.00</span>
+        </p>
+
+        <p>
+            Después de realizar la transferencia,
+            envía tu comprobante para que podamos acreditar
+            el saldo.
+        </p>
+
+        <div id="transferenciaResultado"></div>
+
+    </div>
+
+</div>
             <h2>Mi cuenta</h2>
 
             <p>
