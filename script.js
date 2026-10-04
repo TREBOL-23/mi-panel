@@ -515,3 +515,6 @@ function mostrarTransferencia(monto) {
 }
 window.mostrarRecarga = mostrarRecarga;
 window.mostrarTransferencia = mostrarTransferencia;
+window.mostrarRecarga = mostrarRecarga;
+window.mostrarTransferencia = mostrarTransferencia;
+window.crearSolicitudRecarga = crearSolicitudRecarga;
