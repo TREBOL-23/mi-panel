@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel de Administración</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Panel de Administración</h1>
+
+        <p id="mensaje">
+            Comprobando acceso...
+        </p>
+
+        <div id="solicitudes"></div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://gnfzamjepixqfpxkjuqy.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_hPpstP4dXGS3RaReY6dQ4A_qD0UFy_z";
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+        const API_BACKEND =
+            "https://mi-panel-coral.vercel.app/api";
+
+
+        async function cargarSolicitudes() {
+
+            const mensaje =
+                document.getElementById("mensaje");
+
+            const contenedor =
+                document.getElementById("solicitudes");
+
+            try {
+
+                mensaje.textContent =
+                    "Comprobando sesión...";
+
+
+                const {
+                    data: { session }
+                } =
+                    await supabaseClient.auth.getSession();
+
+
+                if (!session) {
+
+                    mensaje.textContent =
+                        "Debes iniciar sesión primero.";
+
+                    return;
+                }
+
+
+                mensaje.textContent =
+                    "Cargando solicitudes...";
+
+
+                const respuesta =
+                    await fetch(
+                        `${API_BACKEND}/admin-deposits`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    `Bearer ${session.access_token}`
+                            }
+                        }
+                    );
+
+
+                const datos =
+                    await respuesta.json();
+
+
+                if (!respuesta.ok) {
+
+                    throw new Error(
+                        datos.error ||
+                        "No se pudieron cargar las solicitudes."
+                    );
+                }
+
+
+                contenedor.innerHTML = "";
+
+
+                if (!datos.length) {
+
+                    contenedor.innerHTML =
+                        "<p>No hay solicitudes de recarga.</p>";
+
+                    mensaje.textContent =
+                        "Todo correcto.";
+
+                    return;
+                }
+
+
+                datos.forEach(solicitud => {
+
+                    const tarjeta =
+                        document.createElement("div");
+
+                    tarjeta.style.border =
+                        "1px solid #ddd";
+
+                    tarjeta.style.padding =
+                        "15px";
+
+                    tarjeta.style.marginTop =
+                        "15px";
+
+                    tarjeta.style.borderRadius =
+                        "10px";
+
+
+                    tarjeta.innerHTML = `
+                        <strong>
+                            Solicitud #${solicitud.id}
+                        </strong>
+
+                        <p>
+                            Usuario:
+                            ${solicitud.user_id}
+                        </p>
+
+                        <p>
+                            Monto:
+                            $${Number(solicitud.amount).toFixed(2)}
+                        </p>
+
+                        <p>
+                            Estado:
+                            ${solicitud.status}
+                        </p>
+
+                        <p>
+                            Fecha:
+                            ${new Date(
+                                solicitud.created_at
+                            ).toLocaleString()}
+                        </p>
+
+                        ${
+                            solicitud.status === "pending"
+                            ?
+                            `<button
+                                onclick="aprobarSolicitud(${solicitud.id})"
+                            >
+                                APROBAR RECARGA
+                            </button>`
+                            :
+                            ""
+                        }
+                    `;
+
+
+                    contenedor.appendChild(tarjeta);
+
+                });
+
+
+                mensaje.textContent =
+                    "Solicitudes cargadas correctamente.";
+
+            } catch (error) {
+
+                console.error(error);
+
+                mensaje.textContent =
+                    error.message ||
+                    "Ocurrió un error.";
+            }
+        }
+
+
+        async function aprobarSolicitud(id) {
+
+            if (
+                !confirm(
+                    `¿Seguro que quieres aprobar la solicitud #${id}?`
+                )
+            ) {
+                return;
+            }
+
+
+            try {
+
+                const {
+                    data: { session }
+                } =
+                    await supabaseClient.auth.getSession();
+
+
+                if (!session) {
+
+                    alert(
+                        "Tu sesión ha expirado."
+                    );
+
+                    return;
+                }
+
+
+                const respuesta =
+                    await fetch(
+                        `${API_BACKEND}/admin-deposits`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "Authorization":
+                                    `Bearer ${session.access_token}`
+                            },
+
+                            body: JSON.stringify({
+                                request_id: id
+                            })
+                        }
+                    );
+
+
+                const datos =
+                    await respuesta.json();
+
+
+                if (!respuesta.ok) {
+
+                    throw new Error(
+                        datos.error ||
+                        "No se pudo aprobar."
+                    );
+                }
+
+
+                alert(
+                    "Recarga aprobada correctamente."
+                );
+
+
+                await cargarSolicitudes();
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    error.message ||
+                    "Ocurrió un error."
+                );
+            }
+        }
+
+
+        cargarSolicitudes();
+
+    </script>
+
+</body>
+
+</html>
