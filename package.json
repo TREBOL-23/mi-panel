@@ -1,0 +1,23 @@
+{
+  "name": "mi-panel",
+  "version": "1.0.0",
+  "description": "Panel",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TREBOL-23/mi-panel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TREBOL-23/mi-panel/issues"
+  },
+  "homepage": "https://github.com/TREBOL-23/mi-panel#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
