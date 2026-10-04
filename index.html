@@ -58,6 +58,35 @@
                 💰 Saldo:
                 <strong>$<span id="saldo">0.00</span></strong>
             </p>
+            <button onclick="mostrarRecarga()">
+    💰 AGREGAR SALDO
+</button>
+
+<div id="recargaBox" style="display: none;">
+
+    <h3>Agregar saldo</h3>
+
+    <p>Selecciona el monto que deseas agregar:</p>
+
+    <button onclick="solicitarRecarga(5)">
+        $5
+    </button>
+
+    <button onclick="solicitarRecarga(10)">
+        $10
+    </button>
+
+    <button onclick="solicitarRecarga(20)">
+        $20
+    </button>
+
+    <button onclick="solicitarRecarga(50)">
+        $50
+    </button>
+
+    <div id="recargaResultado"></div>
+
+</div>
 
             <button onclick="cerrarSesion()">
                 CERRAR SESIÓN
