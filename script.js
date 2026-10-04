@@ -381,6 +381,110 @@ async function comprobarSesion() {
 }
 
 comprobarSesion();
+// ===============================
+// RECARGAS
+// ===============================
+
+let montoRecargaSeleccionado = 0;
+
+function mostrarRecarga() {
+
+    const recargaBox =
+        document.getElementById("recargaBox");
+
+    if (recargaBox.style.display === "none") {
+        recargaBox.style.display = "block";
+    } else {
+        recargaBox.style.display = "none";
+    }
+}
+
+
+function mostrarTransferencia(monto) {
+
+    montoRecargaSeleccionado = Number(monto);
+
+    const transferenciaBox =
+        document.getElementById("transferenciaBox");
+
+    const montoElemento =
+        document.getElementById("montoTransferencia");
+
+    montoElemento.textContent =
+        montoRecargaSeleccionado.toFixed(2);
+
+    transferenciaBox.style.display = "block";
+}
+
+
+async function crearSolicitudRecarga() {
+
+    const {
+        data: { user }
+    } = await supabaseClient.auth.getUser();
+
+    if (!user) {
+        mostrarAuthMensaje(
+            "Debes iniciar sesión.",
+            "error"
+        );
+        return;
+    }
+
+    if (montoRecargaSeleccionado <= 0) {
+        return;
+    }
+
+    try {
+
+        const recargaResultado =
+            document.getElementById("recargaResultado");
+
+        recargaResultado.textContent =
+            "Registrando solicitud...";
+
+        const { data, error } =
+            await supabaseClient
+                .from("deposit_requests")
+                .insert({
+                    user_id: user.id,
+                    amount: montoRecargaSeleccionado,
+                    status: "pending"
+                })
+                .select()
+                .single();
+
+        if (error) {
+            throw error;
+        }
+
+        recargaResultado.textContent =
+            `Solicitud registrada correctamente. ID: ${data.id}`;
+
+        recargaResultado.style.background =
+            "#e5ffe9";
+
+        recargaResultado.style.padding =
+            "12px";
+
+    } catch (error) {
+
+        console.error(error);
+
+        const recargaResultado =
+            document.getElementById("recargaResultado");
+
+        recargaResultado.textContent =
+            error.message ||
+            "No se pudo registrar la solicitud.";
+
+        recargaResultado.style.background =
+            "#ffe5e5";
+
+        recargaResultado.style.padding =
+            "12px";
+    }
+}
 window.iniciarSesion = iniciarSesion;
 window.registrarse = registrarse;
 window.cerrarSesion = cerrarSesion;
