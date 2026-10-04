@@ -408,6 +408,8 @@ function mostrarTransferencia(monto) {
         Number(monto).toFixed(2);
 
     transferenciaBox.style.display = "block";
+    window.mostrarRecarga = mostrarRecarga;
+window.mostrarTransferencia = mostrarTransferencia;
 }
 
     recargaResultado.textContent =
