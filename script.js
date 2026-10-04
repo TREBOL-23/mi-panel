@@ -484,35 +484,7 @@ async function crearSolicitudRecarga() {
         recargaResultado.style.padding =
             "12px";
     }
-}
-window.iniciarSesion = iniciarSesion;
-window.registrarse = registrarse;
-window.cerrarSesion = cerrarSesion;
-window.realizarOrden = realizarOrden;
-function mostrarRecarga() {
-    const recargaBox =
-        document.getElementById("recargaBox");
-
-    if (recargaBox.style.display === "none") {
-        recargaBox.style.display = "block";
-    } else {
-        recargaBox.style.display = "none";
-    }
-}
-
-function mostrarTransferencia(monto) {
-
-    const transferenciaBox =
-        document.getElementById("transferenciaBox");
-
-    const montoElemento =
-        document.getElementById("montoTransferencia");
-
-    montoElemento.textContent =
-        Number(monto).toFixed(2);
-
-    transferenciaBox.style.display = "block";
-}
+  }
 window.mostrarRecarga = mostrarRecarga;
 window.mostrarTransferencia = mostrarTransferencia;
 window.mostrarRecarga = mostrarRecarga;
