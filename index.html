@@ -10,35 +10,98 @@
 <body>
 
     <div class="container">
+
         <h1>Mi Panel</h1>
 
-        <label>Servicio</label>
-        <select id="servicio">
-            <option value="">Cargando servicios...</option>
-        </select>
+        <!-- LOGIN -->
+        <div id="loginBox">
 
-        <label>Enlace</label>
-        <input
-            type="url"
-            id="enlace"
-            placeholder="https://instagram.com/usuario"
-        >
+            <h2>Iniciar sesión</h2>
 
-        <label>Cantidad</label>
-        <input
-            type="number"
-            id="cantidad"
-            placeholder="1000"
-            min="1"
-        >
+            <label>Correo</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="tu@email.com"
+            >
 
-        <button onclick="realizarOrden()">
-            REALIZAR ORDEN
-        </button>
+            <label>Contraseña</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Contraseña"
+            >
 
-        <div id="resultado"></div>
+            <button onclick="iniciarSesion()">
+                INICIAR SESIÓN
+            </button>
+
+            <button onclick="registrarse()">
+                CREAR CUENTA
+            </button>
+
+            <div id="authResultado"></div>
+
+        </div>
+
+        <!-- PANEL DEL USUARIO -->
+        <div id="panelUsuario" style="display: none;">
+
+            <h2>Mi cuenta</h2>
+
+            <p>
+                Usuario:
+                <strong id="usuarioEmail"></strong>
+            </p>
+
+            <p>
+                💰 Saldo:
+                <strong>$<span id="saldo">0.00</span></strong>
+            </p>
+
+            <button onclick="cerrarSesion()">
+                CERRAR SESIÓN
+            </button>
+
+            <hr>
+
+            <label>Servicio</label>
+
+            <select id="servicio">
+                <option value="">Cargando servicios...</option>
+            </select>
+
+            <label>Enlace</label>
+
+            <input
+                type="url"
+                id="enlace"
+                placeholder="https://instagram.com/usuario"
+            >
+
+            <label>Cantidad</label>
+
+            <input
+                type="number"
+                id="cantidad"
+                placeholder="1000"
+                min="1"
+            >
+
+            <button onclick="realizarOrden()">
+                REALIZAR ORDEN
+            </button>
+
+            <div id="resultado"></div>
+
+        </div>
+
     </div>
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="script.js"></script>
+
 </body>
 </html>
