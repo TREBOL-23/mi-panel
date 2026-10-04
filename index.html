@@ -57,7 +57,61 @@
             💰 Saldo:
             <strong>$<span id="saldo">0.00</span></strong>
         </p>
+<button onclick="mostrarRecarga()">
+    💰 AGREGAR SALDO
+</button>
 
+<div id="recargaBox" style="display: none;">
+
+    <h3>Agregar saldo</h3>
+
+    <p>
+        Selecciona el monto que deseas agregar:
+    </p>
+
+    <button onclick="mostrarTransferencia(5)">
+        $5
+    </button>
+
+    <button onclick="mostrarTransferencia(10)">
+        $10
+    </button>
+
+    <button onclick="mostrarTransferencia(20)">
+        $20
+    </button>
+
+    <button onclick="mostrarTransferencia(50)">
+        $50
+    </button>
+
+    <div id="transferenciaBox" style="display: none;">
+
+        <h3>Transferencia bancaria</h3>
+
+        <p>
+            Monto seleccionado:
+            <strong>$<span id="montoTransferencia">0.00</span></strong>
+        </p>
+
+        <p>
+            Realiza la transferencia utilizando los datos bancarios
+            que aparecen en tu panel.
+        </p>
+
+        <p>
+            <strong>Concepto:</strong> recarga de saldo
+        </p>
+
+        <button onclick="crearSolicitudRecarga()">
+            YA REALICÉ LA TRANSFERENCIA
+        </button>
+
+        <div id="recargaResultado"></div>
+
+    </div>
+
+</div>
         <button onclick="cerrarSesion()">
             CERRAR SESIÓN
         </button>
