@@ -381,5 +381,36 @@ async function comprobarSesion() {
 }
 
 comprobarSesion();
-console.log("SCRIPT.JS CARGADO CORRECTAMENTE");
-console.log("SUPABASE:", window.supabase);
+window.iniciarSesion = iniciarSesion;
+window.registrarse = registrarse;
+window.cerrarSesion = cerrarSesion;
+window.realizarOrden = realizarOrden;
+function mostrarRecarga() {
+    const recargaBox = document.getElementById("recargaBox");
+
+    if (recargaBox.style.display === "none") {
+        recargaBox.style.display = "block";
+    } else {
+        recargaBox.style.display = "none";
+    }
+}
+
+function solicitarRecarga(monto) {
+    const recargaResultado =
+        document.getElementById("recargaResultado");
+
+    recargaResultado.textContent =
+        `Has seleccionado una recarga de $${monto}.`;
+
+    recargaResultado.style.padding = "12px";
+    recargaResultado.style.marginTop = "15px";
+    recargaResultado.style.background = "#eeeeee";
+    recargaResultado.style.borderRadius = "8px";
+}
+window.iniciarSesion = iniciarSesion;
+window.registrarse = registrarse;
+window.cerrarSesion = cerrarSesion;
+window.realizarOrden = realizarOrden;
+
+window.mostrarRecarga = mostrarRecarga;
+window.solicitarRecarga = solicitarRecarga;
