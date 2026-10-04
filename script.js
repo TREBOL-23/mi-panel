@@ -386,7 +386,8 @@ window.registrarse = registrarse;
 window.cerrarSesion = cerrarSesion;
 window.realizarOrden = realizarOrden;
 function mostrarRecarga() {
-    const recargaBox = document.getElementById("recargaBox");
+    const recargaBox =
+        document.getElementById("recargaBox");
 
     if (recargaBox.style.display === "none") {
         recargaBox.style.display = "block";
@@ -395,22 +396,18 @@ function mostrarRecarga() {
     }
 }
 
-function solicitarRecarga(monto) {
-    const recargaResultado =
-        document.getElementById("recargaResultado");
+function mostrarTransferencia(monto) {
 
-    recargaResultado.textContent =
-        `Has seleccionado una recarga de $${monto}.`;
+    const transferenciaBox =
+        document.getElementById("transferenciaBox");
 
-    recargaResultado.style.padding = "12px";
-    recargaResultado.style.marginTop = "15px";
-    recargaResultado.style.background = "#eeeeee";
-    recargaResultado.style.borderRadius = "8px";
+    const montoElemento =
+        document.getElementById("montoTransferencia");
+
+    montoElemento.textContent =
+        Number(monto).toFixed(2);
+
+    transferenciaBox.style.display = "block";
 }
-window.iniciarSesion = iniciarSesion;
-window.registrarse = registrarse;
-window.cerrarSesion = cerrarSesion;
-window.realizarOrden = realizarOrden;
-
 window.mostrarRecarga = mostrarRecarga;
-window.solicitarRecarga = solicitarRecarga;
+window.mostrarTransferencia = mostrarTransferencia;
