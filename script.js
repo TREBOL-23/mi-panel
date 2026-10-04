@@ -422,3 +422,10 @@ window.mostrarTransferencia = mostrarTransferencia;
     recargaResultado.style.background = "#eeeeee";
     recargaResultado.style.borderRadius = "8px";
 }
+window.iniciarSesion = iniciarSesion;
+window.registrarse = registrarse;
+window.cerrarSesion = cerrarSesion;
+window.realizarOrden = realizarOrden;
+
+window.mostrarRecarga = mostrarRecarga;
+window.solicitarRecarga = solicitarRecarga;
