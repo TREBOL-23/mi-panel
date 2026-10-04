@@ -381,10 +381,7 @@ async function comprobarSesion() {
 }
 
 comprobarSesion();
-window.iniciarSesion = iniciarSesion;
-window.registrarse = registrarse;
-window.cerrarSesion = cerrarSesion;
-window.realizarOrden = realizarOrden;
+
 function mostrarRecarga() {
     const recargaBox =
         document.getElementById("recargaBox");
