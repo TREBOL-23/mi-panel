@@ -386,7 +386,8 @@ window.registrarse = registrarse;
 window.cerrarSesion = cerrarSesion;
 window.realizarOrden = realizarOrden;
 function mostrarRecarga() {
-    const recargaBox = document.getElementById("recargaBox");
+    const recargaBox =
+        document.getElementById("recargaBox");
 
     if (recargaBox.style.display === "none") {
         recargaBox.style.display = "block";
@@ -395,9 +396,19 @@ function mostrarRecarga() {
     }
 }
 
-function solicitarRecarga(monto) {
-    const recargaResultado =
-        document.getElementById("recargaResultado");
+function mostrarTransferencia(monto) {
+
+    const transferenciaBox =
+        document.getElementById("transferenciaBox");
+
+    const montoElemento =
+        document.getElementById("montoTransferencia");
+
+    montoElemento.textContent =
+        Number(monto).toFixed(2);
+
+    transferenciaBox.style.display = "block";
+}
 
     recargaResultado.textContent =
         `Has seleccionado una recarga de $${monto}.`;
