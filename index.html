@@ -45,8 +45,68 @@
         </div>
 
         <!-- PANEL DEL USUARIO -->
-        <div id="recargaBox" style="display: none;">
+        <div class="container">
 
+    <h1>Mi Panel</h1>
+
+    <div id="loginBox">
+
+        <h2>Iniciar sesión</h2>
+
+        <label>Correo</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="tu@email.com"
+        >
+
+        <label>Contraseña</label>
+        <input
+            type="password"
+            id="password"
+            placeholder="Contraseña"
+        >
+
+        <button onclick="iniciarSesion()">
+            INICIAR SESIÓN
+        </button>
+
+        <button onclick="registrarse()">
+            CREAR CUENTA
+        </button>
+
+        <div id="authResultado"></div>
+
+    </div>
+
+
+    <div id="panelUsuario" style="display: none;">
+
+        <h2>Mi cuenta</h2>
+
+        <p>
+            Usuario:
+            <strong id="usuarioEmail"></strong>
+        </p>
+
+        <p>
+            💰 Saldo:
+            <strong>$<span id="saldo">0.00</span></strong>
+        </p>
+
+        <button onclick="cerrarSesion()">
+            CERRAR SESIÓN
+        </button>
+
+        <hr>
+
+        <!-- Aquí va Agregar saldo -->
+
+        <!-- Aquí va Servicio -->
+
+    </div>
+
+        </div>
     <h3>💰 Agregar saldo</h3>
 
     <p>Selecciona el monto que deseas recargar:</p>
